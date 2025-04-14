@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Feedback | College Feedback System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Submit Your Feedback</h2>
+
+    <form action="/feedback" method="POST">
+        <label for="email">Your Email</label>
+        <input type="email" name="email" id="email" required>
+
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" id="subject" required>
+
+        <label for="department">Department</label>
+        <input type="text" name="department" id="department" required>
+
+        <label for="faculty">Faculty Name</label>
+        <input type="text" name="faculty" id="faculty" required>
+
+        <label for="feedback">Your Feedback</label>
+        <textarea name="feedback" id="feedback" required></textarea>
+
+        <label for="rating">Rating (1-5)</label>
+        <input type="number" name="rating" id="rating" min="1" max="5" required>
+
+        <label for="suggestions">Suggestions for Improvement</label>
+        <textarea name="suggestions" id="suggestions"></textarea>
+
+        <button type="submit">Submit Feedback</button>
+    </form>
+</div>
+
+</body>
+</html>
