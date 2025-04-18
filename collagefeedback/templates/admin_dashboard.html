@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Admin Dashboard | College Feedback System</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>  <!-- Added Icons -->
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -39,6 +40,10 @@
     .feedback-card:hover {
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
+    .rating {
+      font-size: 20px;
+      color: #FFD700;
+    }
     .footer {
       text-align: center;
       margin-top: 50px;
@@ -50,13 +55,18 @@
 <body>
 
 <div class="container">
-  <h2>Admin Panel - View & Search Feedbacks</h2>
+  <h2>Admin Panel - View & Manage Feedback</h2>
 
-  <!-- 🔍 Search Form (Updated to Use `/search_feedback`) -->
+  <!-- 🔍 Search & Filter Options -->
   <div class="search-box">
-    <form action="/search_feedback" method="GET">  <!-- ✅ Fixed search route -->
-      <input type="text" name="query" class="form-control" placeholder="Search feedback..." value="{{ request.args.get('query', '') }}">
-      <button type="submit" class="btn btn-primary">Search</button>
+    <form action="/search_feedback" method="GET" class="d-flex gap-2">
+      <input type="text" name="query" class="form-control" placeholder="Search by Subject, Faculty, or Student">
+      <select name="sort" class="form-select">
+        <option value="latest">Sort: Latest</option>
+        <option value="highest">Sort: Highest Rating</option>
+        <option value="subject">Sort: Subject-Wise</option>
+      </select>
+      <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
     </form>
   </div>
 
@@ -64,19 +74,20 @@
   {% if feedbacks %}
     {% for fb in feedbacks %}
       <div class="feedback-card">
-        <h5>{{ fb.name }} | ⭐ {{ fb.rating }}</h5>
+        <h5><i class="fas fa-user"></i> {{ fb.name }}</h5>
         <p><strong>Department:</strong> {{ fb.department }} | <strong>Faculty:</strong> {{ fb.faculty }}</p>
+        <p><strong>Subject:</strong> {{ fb.subject }} | <strong>Rating:</strong> <span class="rating">⭐ {{ fb.rating }}</span></p>
         <p>{{ fb.feedback }}</p>
       </div>
     {% endfor %}
   {% else %}
-    <p class="no-data text-center">No feedback found.</p>
+    <p class="text-center">No feedback found.</p>
   {% endif %}
 
   <!-- 🏠 Back to Admin Dashboard -->
   <div class="text-center mt-4">
-    <a href="/" class="btn btn-warning">Go to Home</a>
-    <a href="/logout" class="btn btn-danger">Logout</a>
+    <a href="/" class="btn btn-warning"><i class="fas fa-home"></i> Home</a>
+    <a href="/logout" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
   </div>
 
 </div>

@@ -3,16 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Thank You | College Feedback System</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script> <!-- Icons Added -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .thank-you-container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .success-icon {
+            font-size: 60px;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
+<div class="thank-you-container">
+    <i class="fas fa-check-circle success-icon"></i>
     <h2>Thank You for Your Feedback!</h2>
-
     <p>Your feedback has been submitted successfully.</p>
     
-    <a href="/" class="btn btn-primary">Go to Home</a>
+    <a href="/" class="btn btn-primary"><i class="fas fa-home"></i> Go to Home</a>
 </div>
 
 </body>

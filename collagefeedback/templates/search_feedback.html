@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Search Feedback | Admin Panel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>  <!-- Added Icons -->
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -25,29 +26,8 @@
         .search-box {
             display: flex;
             justify-content: center;
-            align-items: center;
             gap: 10px;
             margin-bottom: 20px;
-        }
-        .search-box input {
-            flex: 1;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-        .search-box button {
-            font-size: 16px;
-            padding: 12px 25px;
-            border-radius: 8px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            transition: 0.3s;
-        }
-        .search-box button:hover {
-            background-color: #0056b3;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         .feedback-card {
             background: #ffffff;
@@ -60,11 +40,15 @@
         .feedback-card:hover {
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-        .button-group {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
+        .rating {
+            font-size: 20px;
+            color: #FFD700;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 14px;
+            color: #888;
         }
     </style>
 </head>
@@ -73,11 +57,16 @@
 <div class="container">
     <h2>Search Student Feedback</h2>
 
-    <!-- 🔍 Search Box -->
+    <!-- 🔍 Search Box with Filters -->
     <div class="search-box">
-        <form action="/search_feedback" method="GET">
-            <input type="text" name="query" class="form-control" placeholder="Enter student name">
-            <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-search"></i> Search</button>
+        <form action="/search_feedback" method="GET" class="d-flex gap-2">
+            <input type="text" name="query" class="form-control" placeholder="Search by Name or Subject">
+            <select name="sort" class="form-select">
+                <option value="latest">Sort: Latest</option>
+                <option value="highest">Sort: Highest Rating</option>
+                <option value="subject">Sort: Subject-Wise</option>
+            </select>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
         </form>
     </div>
 
@@ -87,22 +76,26 @@
     {% if feedbacks %}
         {% for fb in feedbacks %}
             <div class="feedback-card">
-                <h3>{{ fb.name }} | ⭐ {{ fb.rating }}</h3>
-                <p><strong>Department:</strong> {{ fb.department }}</p>
-                <p><strong>Faculty:</strong> {{ fb.faculty }}</p>
+                <h3><i class="fas fa-user"></i> {{ fb.name }}</h3>
+                <p><strong>Department:</strong> {{ fb.department }} | <strong>Faculty:</strong> {{ fb.faculty }}</p>
+                <p><strong>Subject:</strong> {{ fb.subject }} | <strong>Rating:</strong> <span class="rating">⭐ {{ fb.rating }}</span></p>
                 <p>{{ fb.feedback }}</p>
             </div>
         {% endfor %}
     {% else %}
-        <p class="no-data text-center">No feedback found.</p>
+        <p class="text-center">No feedback found.</p>
     {% endif %}
 
     <!-- 🏠 Back to Homepage & Logout -->
-    <div class="button-group">
-        <a href="/" class="btn btn-warning btn-lg">🏠 Back to Homepage</a>
-        <a href="/logout" class="btn btn-danger btn-lg">🚪 Logout</a>
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-warning"><i class="fas fa-home"></i> Home</a>
+        <a href="/logout" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
+</div>
+
+<div class="footer">
+    © 2025 College Feedback System | Made by Students ✌️
 </div>
 
 </body>
