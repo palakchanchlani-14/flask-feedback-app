@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome | College Feedback System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .welcome-container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .btn-group a {
+            width: 100%;
+            font-size: 18px;
+            padding: 12px;
+            transition: 0.3s;
+        }
+        .btn-group a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="welcome-container">
+    <h2>Welcome to College Feedback System</h2>
+    <p>Select your login type:</p>
+
+    <div class="btn-group d-grid gap-2">
+        <a href="/admin_login" class="btn btn-danger"><i class="fas fa-user-shield"></i> Login as Admin</a>
+        <a href="/student_login" class="btn btn-success"><i class="fas fa-user-graduate"></i> Login as Student</a>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>  <!-- Added Icons -->
+</body>
+</html>

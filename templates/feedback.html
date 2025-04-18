@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Feedback | College Feedback System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .feedback-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn-gradient {
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            border: none;
+        }
+        .btn-gradient:hover {
+            background: linear-gradient(to right, #ff7eb3, #ff758c);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="feedback-container">
+        <h2 class="text-center">📢 Submit Your Feedback</h2>
+
+        <form action="/feedback" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="email" class="form-label">Your College Email (@ves.ac.in)</label>
+                <input type="email" name="email" id="email" class="form-control border rounded-3 shadow-sm" required pattern=".+@ves\.ac\.in$" 
+                    title="Only VES college email allowed!">
+            </div>
+
+            <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <select name="subject" id="subject" class="form-select border rounded-3 shadow-sm" required>
+                    <option value="" selected disabled>Select Subject</option>
+                    <option value="WebX">WebX</option>
+                    <option value="DMBI">DMBI</option>
+                    <option value="AIDS">AIDS</option>
+                    <option value="EHF">EHF</option>
+                    <option value="Wireless Technology">Wireless Technology</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="faculty" class="form-label">Faculty Name</label>
+                <input type="text" name="faculty" id="faculty" class="form-control border rounded-3 shadow-sm" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating (1-5)</label>
+                <input type="number" name="rating" id="rating" class="form-control border rounded-3 shadow-sm" min="1" max="5" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="comments" class="form-label">Your Feedback</label>
+                <textarea name="comments" id="comments" class="form-control border rounded-3 shadow-sm" rows="4" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="suggestions" class="form-label">Suggestions for Improvement (Optional)</label>
+                <textarea name="suggestions" id="suggestions" class="form-control border rounded-3 shadow-sm"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="file" class="form-label">Upload Supporting File (Optional)</label>
+                <input type="file" name="file" id="file" class="form-control border rounded-3 shadow-sm">
+            </div>
+
+            <button type="submit" class="btn btn-gradient w-100">📩 Submit Feedback</button>
+
+            <div class="mt-4 text-center">
+                <a href="/student_dashboard" class="btn btn-outline-primary me-2">🔙 Back to Dashboard</a>
+                <a href="/logout" class="btn btn-outline-danger">🚪 Logout</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

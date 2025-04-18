@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard | College Feedback System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>  <!-- Icons Added -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+        }
+        .dashboard-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        .feedback-card {
+            background: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .feedback-card:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .rating {
+            font-size: 20px;
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <h2>Welcome, {{ session['user'] }}</h2>
+    
+    <div class="text-center mb-3">
+        <a href="/feedback" class="btn btn-success"><i class="fas fa-comment-alt"></i> Submit Feedback</a>
+        <a href="/logout" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <hr>
+
+    <h3>Your Past Feedbacks</h3>
+
+    <!-- 📋 Feedback List with Filters -->
+    <div class="search-box text-center mb-3">
+        <form action="/student_dashboard" method="GET" class="d-inline-block">
+            <select name="sort" class="form-select d-inline-block w-auto">
+                <option value="latest">Sort: Latest</option>
+                <option value="highest">Sort: Highest Rating</option>
+                <option value="subject">Sort: Subject-Wise</option>
+            </select>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Apply Filter</button>
+        </form>
+    </div>
+
+    {% if feedbacks %}
+        {% for fb in feedbacks %}
+            <div class="feedback-card">
+                <h3><i class="fas fa-book"></i> {{ fb.subject }} | <span class="rating">⭐ {{ fb.rating }}</span></h3>
+                <p><strong>Department:</strong> {{ fb.department }} | <strong>Faculty:</strong> {{ fb.faculty }}</p>
+                <p>{{ fb.feedback }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-center">No feedback submitted yet.</p>
+    {% endif %}
+</div>
+
+<div class="text-center mt-4">
+    <a href="/" class="btn btn-warning"><i class="fas fa-home"></i> Home</a>
+</div>
+
+</body>
+</html>
